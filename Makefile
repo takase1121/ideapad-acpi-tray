@@ -15,6 +15,8 @@ tray_linux.o: tray_linux.c
 main.o: main.c
 	$(CC) ${CFLAGS} -o $@ $<
 
-
 clean:
 	$(RM) tray_linux.o main.o ideapad-acpi-tray
+
+
+.PHONY: clean
