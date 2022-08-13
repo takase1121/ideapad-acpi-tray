@@ -1,3 +1,5 @@
+STRIP ?= strip
+
 CFLAGS = -c -fPIC -O2 -Wall -Werror -Wextra -std=c99 -pedantic
 LDFLAGS = ${TRAY_LDFLAGS}
 
@@ -12,6 +14,7 @@ setsuid: ideapad-acpi-tray
 
 ideapad-acpi-tray: tray_linux.o main.o
 	gcc -o $@ $^ ${LDFLAGS}
+	$(STRIP) --strip-unneeded $@
 
 tray_linux.o: tray_linux.c
 	$(CC) ${TRAY_CFLAGS} -o $@ $<
