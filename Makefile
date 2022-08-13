@@ -13,7 +13,7 @@ setsuid: ideapad-acpi-tray
 	sudo chmod u+s $<
 
 ideapad-acpi-tray: tray_linux.o main.o
-	gcc -o $@ $^ ${LDFLAGS}
+	$(CC) -o $@ $^ ${LDFLAGS}
 	$(STRIP) --strip-unneeded $@
 
 tray_linux.o: tray_linux.c
