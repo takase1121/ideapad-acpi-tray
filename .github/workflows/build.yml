@@ -11,7 +11,7 @@ jobs:
       - name: Install dependencies
         run: sudo apt install -y libappindicator-dev make gcc
       - name: Build
-        run: make
+        run: make ideapad-acpi-tray
       - name: Package
         uses: actions/upload-artifact@v3
         with:
