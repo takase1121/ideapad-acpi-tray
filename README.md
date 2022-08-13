@@ -4,6 +4,8 @@ This program has 1 purpose - a system tray icon that shows / toggles battery con
 
 Inspired by [gnome-shell-extension-ideapad][1].
 
+This program uses [dmikushin/tray][2] to display the tray icon.
+
 ## Compiling
 
 ### Prerequisites
@@ -64,3 +66,4 @@ PERFORMANCE OF THIS SOFTWARE.
 
 
 [1]: https://github.com/laurento/gnome-shell-extension-ideapad
+[2]: https://github.com/dmikushin/tray
