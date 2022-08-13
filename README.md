@@ -1,5 +1,7 @@
 # ideapad-acpi-tray
 
+![screenshot][3]
+
 This program has 1 purpose - a system tray icon that shows / toggles battery conservation mode on Lenovo Ideapad laptops.
 
 Inspired by [gnome-shell-extension-ideapad][1].
@@ -28,7 +30,7 @@ On dnf systems:
 
 There's not much configuration that you can (need to) change.
 
-Check out `config.h` for all the configurations.
+Check out [`config.h`][4] for all the configurations.
 
 ### Building
 ```
@@ -67,3 +69,5 @@ PERFORMANCE OF THIS SOFTWARE.
 
 [1]: https://github.com/laurento/gnome-shell-extension-ideapad
 [2]: https://github.com/dmikushin/tray
+[3]: screenshot.png
+[4]: config.h
