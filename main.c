@@ -109,24 +109,13 @@ failure:
 }
 
 
-static void enable_cb(struct tray_menu *menu)
+static void toggle_cb(struct tray_menu *menu)
 {
   UNUSED int rc;
   int acpi_fd = *(int*) menu->context;
+  char value = !menu->checked ? '1' : '0';
   lseek(acpi_fd, 0, SEEK_SET);
-  if (write(acpi_fd, (char[]){'1'}, 1) != 1)
-    FAIL_PERROR("cannot write conservation mode");
-  return;
-failure:
-  tray_exit();
-}
-
-static void disable_cb(struct tray_menu *menu)
-{
-  UNUSED int rc;
-  int acpi_fd = *(int*) menu->context;
-  lseek(acpi_fd, 0, SEEK_SET);
-  if (write(acpi_fd, (char[]){'0'}, 1) != 1)
+  if (write(acpi_fd, &value, 1) != 1)
     FAIL_PERROR("cannot write conservation mode");
   return;
 failure:
@@ -168,9 +157,7 @@ int main(int argc, char **argv) {
     .icon = DEFAULT_ICON,
     // dont modify the order
     .menu = (struct tray_menu[]) {
-      { .text = "Battery conservation" },
-      { .text = "Enabled",  .checkbox = 1, .cb = enable_cb,  .context = &mode_fd },
-      { .text = "Disabled", .checkbox = 1, .cb = disable_cb, .context = &mode_fd },
+      { .text = "Battery conservation", .checkbox = 1, .cb = toggle_cb, .context = &mode_fd },
       { .text = "-" },
       { .text = "Quit", .cb = quit_cb },
       { .text = NULL }
@@ -178,8 +165,7 @@ int main(int argc, char **argv) {
   };
 
   // dont modify me
-  struct tray_menu *menu_enabled = &tray.menu[1];
-  struct tray_menu *menu_disabled = &tray.menu[2];
+  struct tray_menu *menu = &tray.menu[0];
 
   // high privilege code
 
@@ -218,14 +204,12 @@ int main(int argc, char **argv) {
     if (current_mode != last_mode) {
       switch (current_mode) {
         case '0':
-        menu_enabled->checked = 0;
-        menu_disabled->checked = 1;
+        menu->checked = 0;
         tray.icon = CONSERVATION_DISABLED_ICON;
         break;
 
         case '1':
-        menu_enabled->checked = 1;
-        menu_disabled->checked = 0;
+        menu->checked = 1;
         tray.icon = CONSERVATION_ENABLED_ICON;
         break;
       }
