@@ -12,7 +12,7 @@ ideapad-acpi-tray: tray_linux.o main.o
 tray_linux.o: tray_linux.c
 	$(CC) ${TRAY_CFLAGS} -o $@ $<
 
-main.o: main.c
+main.o: main.c config.h
 	$(CC) ${CFLAGS} -o $@ $<
 
 clean:
