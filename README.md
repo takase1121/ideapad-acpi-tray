@@ -18,7 +18,7 @@ This program uses [dmikushin/tray][2] to display the tray icon.
 
 On apt systems:
 ```sh
-# apt install libappindicator3-dev make gcc
+# apt install libappindicator-dev make gcc
 ```
 
 On dnf systems:
