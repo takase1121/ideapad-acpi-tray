@@ -11,10 +11,10 @@
  * response time.
  */
 static const struct timespec WAIT_TIMEOUT = {
-	/** seconds */
-	.tv_sec = 0,
-	/** nanoseconds - 80ms by default */
-	.tv_nsec = 80000000L
+  /** seconds */
+  .tv_sec = 0,
+  /** nanoseconds - 80ms by default */
+  .tv_nsec = 80000000L
 };
 
 /**
