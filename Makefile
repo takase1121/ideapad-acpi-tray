@@ -1,10 +1,7 @@
-DEBUG = -g
-
-CFLAGS = -c -fPIC ${DEBUG} -Wall -Werror -Wextra -std=c99 -pedantic
+CFLAGS = -c -fPIC -O2 -Wall -Werror -Wextra -std=c99 -pedantic
 LDFLAGS = ${TRAY_LDFLAGS}
 
-
-TRAY_CFLAGS = -c -fPIC ${DEBUG} `pkg-config --cflags appindicator-0.1`
+TRAY_CFLAGS = -c -fPIC -O2 `pkg-config --cflags appindicator-0.1`
 TRAY_LDFLAGS = `pkg-config --libs appindicator-0.1`
 
 ideapad-acpi-tray: tray_linux.o main.o
